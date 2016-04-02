@@ -14,6 +14,8 @@ namespace Ejercicio16
         public int legajo;
         public string nombre;
 
+        Random rnd = new Random();
+
         public Alumno(string Nombre, string Apellido, int Legajo)
         {
             this.nombre = Nombre;
@@ -21,15 +23,44 @@ namespace Ejercicio16
             this.legajo = Legajo;
         }
 
-        public static void CalcularFinal()
-        { }
-        
-        public static void Estudiar(byte notaUno, byte notaDos)
+        public void CalcularFinal()
         {
             
+            if (this._nota1 >= 4 && this._nota2 >= 4)
+            {
+                this._notaFinal = rnd.Next(4, 10);
+            }
+            else
+            {
+                this._notaFinal = -1;
+            }
+
+            if (this._notaFinal != -1)
+            {
+                Console.Write("\nLa nota del final es: " + this._notaFinal);
+            }
+            else
+            {
+                Console.Write("\nDesaprobado");
+            }
+                
         }
         
-        public static void Mostrar()
-        { }
+        public void Estudiar(byte notaUno, byte notaDos)
+        {
+            this._nota1 = notaUno;
+            this._nota2 = notaDos;
+        }
+        
+        public static void Mostrar(Alumno UnAlumno)
+        {
+            Console.Write("Nombre: " + UnAlumno.nombre);
+            Console.Write("\nApellido: " + UnAlumno.apellido);
+            Console.Write("\nLegajo: " + UnAlumno.legajo);
+            Console.Write("\nNota 1: " + UnAlumno._nota1);
+            Console.Write("\nNota 2: " + UnAlumno._nota2);
+            UnAlumno.CalcularFinal();
+            Console.WriteLine("\n");
+        }
     }
 }
